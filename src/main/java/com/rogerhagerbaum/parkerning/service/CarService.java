@@ -47,12 +47,12 @@ public class CarService {
 
     public CarDto getById(int id){
         Car car = carRepository.findCarById(id);
-        System.out.println(car.toString());
+        TypeMap<Car, CarDto> propertyMapper = this.modelMapper.createTypeMap(Car.class, CarDto.class);
+        propertyMapper.addMappings(mapper -> mapper.skip(CarDto::setPerson));
         return modelMapper.map(car , CarDto.class);
     }
     public CarDto deleteCar(int id) {
         Car car = carRepository.findCarById(id);
-
         carRepository.delete(car);
         return modelMapper.map(car, CarDto.class);
     }
