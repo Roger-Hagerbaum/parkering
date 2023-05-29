@@ -1,9 +1,7 @@
 package com.rogerhagerbaum.parkerning.module.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 
@@ -15,6 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class ParkingSpot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
