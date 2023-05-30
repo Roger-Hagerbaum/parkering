@@ -25,16 +25,16 @@ public class ParkingController {
         return new ResponseEntity<>(parkingService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{parkingId}")
-    public ResponseEntity<ParkingDto> findById(@PathVariable int parkingId) {
+    public ResponseEntity<ParkingDto> findById(@PathVariable Long parkingId) {
         return new ResponseEntity<>(parkingService.getById(parkingId), HttpStatus.OK);
     }
     @GetMapping("/{carPersonId}/{aktivInactiv}")
-    public ResponseEntity<List<ParkingDto>>findParkingStatus(@PathVariable int carPersonId,@PathVariable Boolean aktivInactiv) {
+    public ResponseEntity<List<ParkingDto>>findParkingStatus(@PathVariable Long carPersonId,@PathVariable Boolean aktivInactiv) {
 
         return new ResponseEntity<>(parkingService.findParkingStatus(carPersonId, aktivInactiv), HttpStatus.OK);
     }
     @PatchMapping("/{parkingId}/{updateTime}")
-    public ResponseEntity<ParkingDto> updateParking(@PathVariable int parkingId,
+    public ResponseEntity<ParkingDto> updateParking(@PathVariable Long parkingId,
                                                     @PathVariable LocalDateTime updateTime) {
         return new ResponseEntity<>(parkingService.updateParking(parkingId, updateTime), HttpStatus.OK);
     }

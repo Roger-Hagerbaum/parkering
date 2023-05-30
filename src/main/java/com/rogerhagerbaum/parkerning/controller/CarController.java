@@ -19,15 +19,15 @@ public class CarController {
         return new ResponseEntity<>(carService.addCar(carDto, personId), HttpStatus.CREATED);
     }
     @GetMapping("")
-    public ResponseEntity<List<CarDto>>getAll(@RequestParam (required = false) Long personId) {
-        return new ResponseEntity<>(carService.getAll(personId), HttpStatus.OK);
+    public ResponseEntity<List<CarDto>>getAll() {
+        return new ResponseEntity<>(carService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{carId}")
-    public ResponseEntity<CarDto> findById(@PathVariable int carId) {
+    public ResponseEntity<CarDto> findById(@PathVariable Long carId) {
         return new ResponseEntity<>(carService.getById(carId), HttpStatus.OK);
     }
     @DeleteMapping("/{carId}")
-    public ResponseEntity<CarDto>  deleteCar(@PathVariable int carId) {
+    public ResponseEntity<CarDto>  deleteCar(@PathVariable Long carId) {
         return new ResponseEntity<>(carService.deleteCar(carId), HttpStatus.OK);
 
     }

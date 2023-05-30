@@ -12,6 +12,6 @@ public interface ParkingSpotRepository extends JpaRepository<ParkingSpot, Long> 
     ParkingSpot findParkingSpotById(Long id);
     @Query("select o from ParkingSpot o ")
     Set<ParkingSpot> getAll();
-    ParkingSpot findParkingSpotById(int id);
+
 
 }

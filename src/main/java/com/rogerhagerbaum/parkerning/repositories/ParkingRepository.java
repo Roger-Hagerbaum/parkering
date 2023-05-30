@@ -14,6 +14,6 @@ public interface ParkingRepository extends JpaRepository<Parking, Long> {
     Set<Parking> getAll();
     @Query("select o from Parking o where o.isActive = :status")
     Set<Parking> getAllByActive(boolean status);
-    Parking findParkingById(int id);
+
 
 }

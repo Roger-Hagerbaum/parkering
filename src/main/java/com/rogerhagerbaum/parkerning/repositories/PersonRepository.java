@@ -14,5 +14,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Person findPersonById(Long id);
     @Query("select o from Person o ")
     Set<Person> getAll();
-    Person findPersonById(int id);
+
 }

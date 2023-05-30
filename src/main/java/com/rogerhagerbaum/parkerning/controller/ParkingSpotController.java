@@ -29,7 +29,7 @@ public class ParkingSpotController {
         return new ResponseEntity<>(parkingSpotService.getById(parkingSpotId), HttpStatus.OK);
     }
     @DeleteMapping("/{parkingSpotId}")
-    public ResponseEntity<ParkingSpotDto>  deleteParkingSpot(@PathVariable int parkingSpotId) {
+    public ResponseEntity<ParkingSpotDto>  deleteParkingSpot(@PathVariable Long parkingSpotId) {
         return new ResponseEntity<>(parkingSpotService.deletePerson(parkingSpotId), HttpStatus.OK);
 
     }

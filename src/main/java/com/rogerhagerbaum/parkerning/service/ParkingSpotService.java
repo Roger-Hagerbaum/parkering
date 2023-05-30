@@ -1,11 +1,13 @@
 package com.rogerhagerbaum.parkerning.service;
 
+import com.rogerhagerbaum.parkerning.exceptionHandling.EntityException;
 import com.rogerhagerbaum.parkerning.module.dto.ParkingSpotDto;
 import com.rogerhagerbaum.parkerning.module.entity.ParkingSpot;
 import com.rogerhagerbaum.parkerning.repositories.ParkingSpotRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,10 +37,16 @@ public class ParkingSpotService {
     }
     public ParkingSpotDto getById(Long id){
         ParkingSpot parkingSpot = parkingSpotRepository.findParkingSpotById(id);
+        if (parkingSpot == null){
+            throw new EntityException(String.format("ParkingSpot: %d not found", id), HttpStatus.NOT_FOUND);
+        }
         return modelMapper.map(parkingSpot , ParkingSpotDto.class);
     }
-    public ParkingSpotDto deletePerson(int id) {
+    public ParkingSpotDto deletePerson(Long id) {
         ParkingSpot parkingSpot = parkingSpotRepository.findParkingSpotById(id);
+        if (parkingSpot == null){
+            throw new EntityException(String.format("ParkingSpot: %d not found", id), HttpStatus.NOT_FOUND);
+        }
         parkingSpotRepository.delete(parkingSpot);
         return modelMapper.map(parkingSpot, ParkingSpotDto.class);
     }

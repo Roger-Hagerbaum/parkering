@@ -1,5 +1,6 @@
 package com.rogerhagerbaum.parkerning.service;
 
+import com.rogerhagerbaum.parkerning.exceptionHandling.EntityException;
 import com.rogerhagerbaum.parkerning.module.dto.CarDto;
 import com.rogerhagerbaum.parkerning.module.entity.Car;
 import com.rogerhagerbaum.parkerning.module.entity.Person;
@@ -28,29 +29,33 @@ public class CarService {
     public CarDto addCar(CarDto carDto , Long personId){
         Car createNew = modelMapper.map(carDto, Car.class);
         Person person = personRepository.findPersonById(personId);
+        if (person == null){
+            throw new EntityException(String.format("Person: %d not found", personId), HttpStatus.NOT_FOUND);
+        }
         createNew.setPerson(person);
         carRepository.save(createNew);
         System.out.println(createNew.getPerson().getId());
         return modelMapper.map(createNew , CarDto.class);
     }
-    public List<CarDto> getAll(Long personId){
-        Set<Car> cars;
-        if(personId != null){
-            cars = carRepository.findByPersonId(personId);
-        }else {
-            cars = carRepository.getAll();
-        }
+    public List<CarDto> getAll(){
+        Set<Car> cars = carRepository.getAll();
         return cars.stream()
                 .map(CarDto::new)
                 .collect(Collectors.toList());
     }
 
-    public CarDto getById(int id){
+    public CarDto getById(Long id){
         Car car = carRepository.findCarById(id);
+        if (car == null){
+            throw new EntityException(String.format("Car: %d not found", id), HttpStatus.NOT_FOUND);
+        }
         return modelMapper.map(car , CarDto.class);
     }
-    public CarDto deleteCar(int id) {
+    public CarDto deleteCar(Long id) {
         Car car = carRepository.findCarById(id);
+        if (car == null){
+            throw new EntityException(String.format("Car: %d not found", id), HttpStatus.NOT_FOUND);
+        }
         carRepository.delete(car);
         return modelMapper.map(car, CarDto.class);
     }

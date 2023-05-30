@@ -24,11 +24,11 @@ public class PersonController {
         return new ResponseEntity<>(personService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{personId}")
-    public ResponseEntity<PersonDto> findById(@PathVariable int personId) {
+    public ResponseEntity<PersonDto> findById(@PathVariable Long personId) {
         return new ResponseEntity<>(personService.getById(personId), HttpStatus.OK);
     }
     @DeleteMapping("/{personId}")
-    public ResponseEntity<PersonDto>  deleteCar(@PathVariable int personId) {
+    public ResponseEntity<PersonDto>  deleteCar(@PathVariable Long personId) {
         return new ResponseEntity<>(personService.deletePerson(personId), HttpStatus.OK);
 
     }
