@@ -33,7 +33,7 @@ public class ParkingSpotService {
                 .map(ParkingSpotDto::new)
                 .collect(Collectors.toList());
     }
-    public ParkingSpotDto getById(int id){
+    public ParkingSpotDto getById(Long id){
         ParkingSpot parkingSpot = parkingSpotRepository.findParkingSpotById(id);
         return modelMapper.map(parkingSpot , ParkingSpotDto.class);
     }

@@ -1,5 +1,6 @@
 package com.rogerhagerbaum.parkerning.module.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

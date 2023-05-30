@@ -1,5 +1,6 @@
 package com.rogerhagerbaum.parkerning.module.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class Person {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "person")
     private List<Car> cars;
 }

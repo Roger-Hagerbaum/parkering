@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 
+import java.util.List;
 import java.util.Set;
 
 @Data

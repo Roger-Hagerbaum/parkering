@@ -25,7 +25,7 @@ public class ParkingSpotController {
         return new ResponseEntity<>(parkingSpotService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{parkingSpotId}")
-    public ResponseEntity<ParkingSpotDto> findById(@PathVariable int parkingSpotId) {
+    public ResponseEntity<ParkingSpotDto> findById(@PathVariable Long parkingSpotId) {
         return new ResponseEntity<>(parkingSpotService.getById(parkingSpotId), HttpStatus.OK);
     }
     @DeleteMapping("/{parkingSpotId}")

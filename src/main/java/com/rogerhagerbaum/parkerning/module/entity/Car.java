@@ -15,6 +15,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String registration;
+
     @JsonIgnore
     @ManyToOne
     private Person person;

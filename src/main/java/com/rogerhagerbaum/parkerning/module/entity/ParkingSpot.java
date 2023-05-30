@@ -1,11 +1,13 @@
 package com.rogerhagerbaum.parkerning.module.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.geolatte.geom.G2D;
 import org.geolatte.geom.Point;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -22,6 +24,7 @@ public class ParkingSpot {
 
     private Point<G2D> coordinate;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "parkingSpot")
-    private Set<Parking> parkingEvent = new HashSet<>();
+    private Set<Parking> parkingEvent;
 }
