@@ -59,6 +59,8 @@ public class ParkingService {
         Parking update = parkingRepository.findParkingById(id);
         if (update == null){
             throw new EntityException(String.format("Parking: %d not found", id), HttpStatus.NOT_FOUND);
+        }else if (uppdateTime.isBefore(update.getStartTime()) || !update.isActive) {
+            throw new EntityException("Time must be after start and parking must be active", HttpStatus.BAD_REQUEST);
         }
         update.setStopTime(uppdateTime);
         parkingRepository.save(update);
