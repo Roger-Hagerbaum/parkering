@@ -32,6 +32,9 @@ public class ParkingService {
 
     public ParkingDto startParking(ParkingDto parkingDto) {
         Parking createNew = modelMapper.map(parkingDto, Parking.class);
+        if(createNew.getStopTime().isBefore(LocalDateTime.now())) {
+            throw new EntityException("Time must be after start time!", HttpStatus.BAD_REQUEST);
+        }
         parkingRepository.save(createNew);
         return modelMapper.map(createNew, ParkingDto.class);
     }
