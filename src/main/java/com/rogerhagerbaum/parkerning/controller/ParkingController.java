@@ -28,10 +28,11 @@ public class ParkingController {
     public ResponseEntity<ParkingDto> findById(@PathVariable Long parkingId) {
         return new ResponseEntity<>(parkingService.getById(parkingId), HttpStatus.OK);
     }
-    @GetMapping("/{carPersonId}/{aktivInactiv}")
-    public ResponseEntity<List<ParkingDto>>findParkingStatus(@PathVariable Long carPersonId,@PathVariable Boolean aktivInactiv) {
+    @GetMapping("/{carId}/{aktivStatus}")
+    public ResponseEntity<List<ParkingDto>>findParkingStatus(@PathVariable  Long carId, @PathVariable boolean aktivStatus) {
 
-        return new ResponseEntity<>(parkingService.findParkingStatus(carPersonId, aktivInactiv), HttpStatus.OK);
+
+        return new ResponseEntity<>(parkingService.findParkingStatus(carId,aktivStatus), HttpStatus.OK);
     }
     @PatchMapping("/{parkingId}/{updateTime}")
     public ResponseEntity<ParkingDto> updateParking(@PathVariable Long parkingId,

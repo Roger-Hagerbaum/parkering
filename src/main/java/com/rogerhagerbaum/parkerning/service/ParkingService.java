@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -48,10 +49,20 @@ public class ParkingService {
         }
         return modelMapper.map(parking , ParkingDto.class);
     }
-    public List<ParkingDto> findParkingStatus(Long carPersonId,boolean aktivInactiv){
+    public List<ParkingDto> findParkingStatus(Long carId, boolean aktivStatus){
         Set<Parking> parking;
-        parking = parkingRepository.getAllByActive(aktivInactiv);
-        return parking.stream()
+        Set<Parking> filterd = new HashSet<>();
+        parking = parkingRepository.getAllByActive(aktivStatus);
+        if(carId != null){
+        for  (Parking park : parking){
+            if(park.getCar().getId().equals(carId)){
+                filterd.add(park);
+            }
+        }
+        }else {
+            filterd = parking;
+        }
+        return filterd.stream()
                 .map(ParkingDto::new)
                 .collect(Collectors.toList());
     }
